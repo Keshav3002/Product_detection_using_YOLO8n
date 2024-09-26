@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Detection</title>
+</head>
+<body>
+    <h1>Upload Image for Detection</h1>
+    
+    <form action="/detect-and-group" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
+        <br><br>
+        <img id="imagePreview" src="{{ upload_path }}" alt="Image preview will appear here" style="max-width: 500px; display: none;">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+        function previewImage(event) {
+            var image = document.getElementById('imagePreview');
+            var file = event.target.files[0];
+            
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    image.src = reader.result;  // Set the image src to the uploaded file
+                    image.style.display = 'block';  // Show the image
+                };
+                reader.readAsDataURL(file);  // Read the file as a data URL
+            }
+        }
+    </script>
+</body>
+</html>

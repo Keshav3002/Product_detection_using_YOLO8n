@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Results</title>
+</head>
+<body>
+    <h1>Detection Results</h1>
+    <h2>Uploaded Image</h2>
+    <img src="{{ result_image_path }}" alt="Result Image" style="max-width: 500px;">
+    
+    <h2>Detections</h2>
+    <ul>
+        {% for detection in detections %}
+            <li>
+                <strong>Class Name:</strong> {{ detection.class_name }} <br>
+                <strong>Confidence:</strong> {{ detection.confidence }} <br>
+                <strong>Bounding Box:</strong> {{ detection.bbox }} <br>
+                <strong>Cluster:</strong> {{ detection.cluster }} <br>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/">Upload Another Image</a>
+</body>
+</html>
